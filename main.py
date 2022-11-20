@@ -1,14 +1,14 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5 import uic
 from PyQt5.QtGui import QPainter, QColor
-import random
+from random import randint
+from app_design import Ui_MainWindow
 import sys
 
 
-class Yellow_Circles_App(QMainWindow):
+class Yellow_Circles_App(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('app_design.ui', self)
+        self.setupUi(self)
         self.add_funcs_for_button()
         self.draw = False
 
@@ -28,8 +28,8 @@ class Yellow_Circles_App(QMainWindow):
         self.repaint()
 
     def draw_flag(self, qp):
-        r = random.randint(0, 150)
-        qp.setBrush(QColor(255, 216, 13))
+        r = randint(0, 150)
+        qp.setBrush(QColor(randint(0, 256), randint(0, 256), randint(0, 256)))
         qp.drawEllipse(150 - r, 150 - r, 150 + (2 * r), 150 + (r * 2))
 
 
